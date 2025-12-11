@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sri Charan — Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Sri Charan</div>
+    <nav class="main-nav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="cta" onclick="scrollToSection('#contact')">Hire / Contact</button>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-left">
+        <h1>Hi — I'm <span class="accent">Sri Charan</span></h1>
+        <p class="lead">B.Tech (AIML) — 3rd year • Frontend & ML enthusiast. I build thoughtful user experiences, practical ML projects and small games. I like clean code, pragmatic AI and interfaces that feel effortless.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#projects">See Projects</a>
+          <a class="btn ghost" href="#about">About me</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="portrait">
+          <img src="/Users/sricharan/Desktop/sendgb-GjaHBTw60Yd/P1714325.JPG" alt="Sri Charan portrait">
+        </div>
+        <div class="hero-meta">
+          <div><strong>Program</strong><span>B.Tech (AIML) — 3rd year</span></div>
+          <div><strong>Location</strong><span>Hyderabad, India</span></div>
+          <div><strong>Focus</strong><span>Frontend • ML • Game Dev</span></div>
+        </div>
+      </div>
+    </section>
+    <section id="about" class="section">
+      <div class="container">
+        <h2>About Me</h2>
+        <p class="about-text">
+          I am a third-year B.Tech student specializing in AIML. I enjoy turning ideas into working products — from responsive landing pages to machine learning prototypes.
+          My approach is pragmatic: ship small, test fast, and improve continuously. Outside coding, I read research papers, experiment with small neural nets and prototype interactive UI micro-animations.
+        </p>
+      </div>
+    </section>
+    <section id="skills" class="section alt">
+      <div class="container">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+          <div class="skill">
+            <h3>HTML & CSS</h3>
+            <p>Semantic markup, responsive layouts, modern CSS (flexbox, grid), animations and accessibility-aware UI.</p>
+          </div>
+          <div class="skill">
+            <h3>JavaScript</h3>
+            <p>Vanilla JS, DOM, ES6+, modular code and interactive frontends. Familiar with frameworks and tooling.</p>
+          </div>
+          <div class="skill">
+            <h3>Python</h3>
+            <p>Scripting, data processing and prototyping machine learning models with libraries like NumPy, pandas and TensorFlow/PyTorch.</p>
+          </div>
+          <div class="skill">
+            <h3>ML & Sequence Models</h3>
+            <p>Experience building ML pipelines, and models using LSTM/GRU architectures for sequence tasks (speech, video, time-series).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <h3>Movie Recommendation System — ML</h3>
+            <p class="proj-desc">A recommendation engine that combines collaborative filtering and content signals to recommend movies. Built data pipelines, tuned embeddings, and evaluated with precision/recall metrics.</p>
+            <p class="proj-tech"><strong>Tech:</strong> Python, pandas, scikit-learn, embeddings</p>
+          </article>
+
+          <article class="project-card">
+            <h3>E-commerce Website — Frontend</h3>
+            <p class="proj-desc">Responsive, accessible e-commerce front-end built with semantic HTML, modern CSS and JavaScript. Features cart UI, product filters and a clean checkout flow.</p>
+            <p class="proj-tech"><strong>Tech:</strong> HTML, CSS, JavaScript</p>
+          </article>
+
+          <article class="project-card">
+            <h3>AI Video / Image Analyzer — LSTM & GRU</h3>
+            <p class="proj-desc">A research-oriented prototype that analyzes video/image sequences using LSTM/GRU models to detect patterns and generate scene-level summaries. Focused on sequence modeling and feature extraction.</p>
+            <p class="proj-tech"><strong>Tech:</strong> Python, TensorFlow / PyTorch, LSTM, GRU</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="section alt">
+      <div class="container contact-grid">
+        <div>
+          <h2>Let's build something</h2>
+          <p>If you're looking for a developer who understands both modern front-end and practical ML, send a message — I respond quickly.</p>
+          <p><strong>Email</strong> — charan@example.com</p>
+          <p><strong>Availability</strong> — Open to internships & collaborations</p>
+        </div>
+
+        <form class="contact-form" onsubmit="handleContact(event)">
+          <label>
+            <span>Name</span>
+            <input type="text" id="name" required>
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" id="mail" required>
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea id="message" rows="5" required></textarea>
+          </label>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>© 2025 Sri Charan — B.Tech AIML • Built with HTML, CSS & JS</div>
+  </footer>
+
+  <script>
+    function scrollToSection(sel) {
+      const el = document.querySelector(sel);
+      if (!el) return;
+      el.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+    document.querySelectorAll('.main-nav a').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        scrollToSection(a.getAttribute('href'));
+      });
+    });
+    function handleContact(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const mail = document.getElementById('mail').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!name || !mail || !message) {
+        alert('Please complete all fields.');
+        return;
+      }
+      alert('Thanks, ' + name + '! I received your message. I will reply at ' + mail + '.');
+      e.target.reset();
+      scrollToSection('#home');
+    }
+  </script>
+</body>
+</html>
