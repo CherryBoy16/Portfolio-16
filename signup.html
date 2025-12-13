@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Signup Page</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    .signup-container {
+        background: #fff;
+        width: 100%;
+        max-width: 400px;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .signup-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        position: relative;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 13px;
+        color: #555;
+    }
+
+    .error {
+        font-size: 12px;
+        color: red;
+        margin-top: 5px;
+        display: none;
+    }
+
+    .strength {
+        height: 6px;
+        width: 100%;
+        background: #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-top: 8px;
+    }
+
+    .strength-bar {
+        height: 100%;
+        width: 0;
+        transition: width 0.3s;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #5a67d8;
+    }
+
+    .success {
+        text-align: center;
+        color: green;
+        margin-top: 15px;
+        display: none;
+    }
+
+    @media (max-width: 480px) {
+        .signup-container {
+            margin: 15px;
+            padding: 20px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="signup-container">
+    <h2>Create Account</h2>
+
+    <form id="signupForm">
+        <div class="form-group">
+            <input type="text" id="name" placeholder="Full Name">
+            <div class="error" id="nameError">Name is required</div>
+        </div>
+
+        <div class="form-group">
+            <input type="email" id="email" placeholder="Email Address">
+            <div class="error" id="emailError">Enter a valid email</div>
+        </div>
+
+        <div class="form-group">
+            <input type="password" id="password" placeholder="Password">
+            <span class="toggle-password" onclick="togglePassword()">Show</span>
+            <div class="strength">
+                <div class="strength-bar" id="strengthBar"></div>
+            </div>
+            <div class="error" id="passwordError">Password must be at least 6 characters</div>
+        </div>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="success" id="successMessage">
+        Signup Successful 🎉
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById("signupForm");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const successMessage = document.getElementById("successMessage");
+
+    const strengthBar = document.getElementById("strengthBar");
+
+    function togglePassword() {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+
+    passwordInput.addEventListener("input", () => {
+        let strength = 0;
+        const value = passwordInput.value;
+
+        if (value.length >= 6) strength += 1;
+        if (/[A-Z]/.test(value)) strength += 1;
+        if (/[0-9]/.test(value)) strength += 1;
+        if (/[^A-Za-z0-9]/.test(value)) strength += 1;
+
+        switch (strength) {
+            case 0:
+                strengthBar.style.width = "0%";
+                break;
+            case 1:
+                strengthBar.style.width = "25%";
+                strengthBar.style.background = "red";
+                break;
+            case 2:
+                strengthBar.style.width = "50%";
+                strengthBar.style.background = "orange";
+                break;
+            case 3:
+                strengthBar.style.width = "75%";
+                strengthBar.style.background = "yellowgreen";
+                break;
+            case 4:
+                strengthBar.style.width = "100%";
+                strengthBar.style.background = "green";
+                break;
+        }
+    });
+
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let valid = true;
+
+        if (nameInput.value.trim() === "") {
+            nameError.style.display = "block";
+            valid = false;
+        } else {
+            nameError.style.display = "none";
+        }
+
+        if (!emailInput.value.includes("@")) {
+            emailError.style.display = "block";
+            valid = false;
+        } else {
+            emailError.style.display = "none";
+        }
+
+        if (passwordInput.value.length < 6) {
+            passwordError.style.display = "block";
+            valid = false;
+        } else {
+            passwordError.style.display = "none";
+        }
+
+        if (valid) {
+            successMessage.style.display = "block";
+            form.reset();
+            strengthBar.style.width = "0%";
+        }
+    });
+</script>
+
+</body>
+</html>
