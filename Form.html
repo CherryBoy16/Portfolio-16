@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Signup Clone</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: #ffffff;
+    }
+
+    .container {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+    }
+
+    /* LEFT SIDE PANEL ------------------------------------ */
+    .left {
+        width: 55%;
+        background: #000;
+        color: white;
+        padding: 70px 80px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .left h1 {
+        font-size: 36px;
+        font-weight: 600;
+    }
+
+    .left p {
+        margin-top: -10px;
+        font-size: 15px;
+        opacity: 0.9;
+    }
+
+    /* Transparent characters PNG */
+    .left img {
+        position: absolute;
+        bottom: 40px;
+        left: 80px;
+        width: 65%;
+        animation: float 4s ease-in-out infinite;
+    }
+
+    /* Floating animation */
+    @keyframes float {
+        0% { transform: translateY(0px);}
+        50% { transform: translateY(-18px);}
+        100% { transform: translateY(0px);}
+    }
+
+    /* RIGHT SIDE PANEL ------------------------------------- */
+    .right {
+        width: 45%;
+        padding: 40px 140px;
+        overflow-y: auto;
+    }
+
+    .right h2 {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 25px;
+    }
+
+    /* Google + Apple buttons */
+    .btn-provider {
+        width: 100%;
+        height: 46px;
+        border-radius: 8px;
+        border: 1px solid #d0d0d0;
+        background: #fafafa;
+        margin-bottom: 12px;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        cursor: pointer;
+        font-weight: 500;
+    }
+
+    .btn-provider img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .or-line {
+        text-align: center;
+        margin: 15px 0;
+        font-size: 14px;
+        color: #666;
+    }
+
+    /* Labels + Inputs */
+    label {
+        font-size: 14px;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    input, select {
+        width: 100%;
+        height: 42px;
+        border-radius: 6px;
+        border: 1.4px solid #d0d0d0;
+        margin-bottom: 6px;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #6ca4ff;
+    }
+
+    .hint {
+        font-size: 12px;
+        color: gray;
+        margin-bottom: 12px;
+        line-height: 1.4;
+    }
+
+    .error {
+        color: #b40000;
+        font-size: 13px;
+        margin-bottom: 12px;
+        line-height: 1.4;
+    }
+
+    /* SMALL CHECKBOX */
+    .email-pref-label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 18px;
+        margin-bottom: 8px;
+        display: block;
+        color: #24292e;
+    }
+
+    .checkbox-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 14px;
+        color: #24292e;
+        line-height: 1.4;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+        width: 14px;
+        height: 14px;
+        margin-top: 2px;
+    }
+
+    /* Create account button */
+    button#create {
+        width: 100%;
+        height: 46px;
+        background: #000;
+        color: white;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    button#create:hover {
+        background: #242424;
+    }
+
+    /* Terms Footer */
+    .terms {
+        font-size: 12.5px;
+        color: #57606a;
+        margin-top: 20px;
+        line-height: 1.5;
+    }
+
+    .terms a {
+        color: #0969da;
+        text-decoration: none;
+    }
+
+    .terms a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT PANEL --------------------------------------------->
+    <div class="left">
+        <h1>Create your free account</h1>
+        <p>Explore GitHub’s core features for individuals and organizations.</p>
+
+        <!-- Transparent characters image (no white background) -->
+        <img src="C:\Users\karth\OneDrive\Desktop\Day-1\logo.png">
+    </div>
+
+    <!-- RIGHT PANEL -------------------------------------------->
+    <div class="right">
+        <h2>Sign up for GitHub</h2>
+
+        <button class="btn-provider">
+            <img src="google.png">
+            Continue with Google
+        </button>
+
+        <button class="btn-provider">
+            <img src="apple.png">
+            Continue with Apple
+        </button>
+
+        <div class="or-line">or</div>
+
+        <!-- EMAIL -->
+        <label>Email*</label>
+        <input type="email" id="email">
+        <div class="error" id="emailError"></div>
+
+        <!-- PASSWORD -->
+        <label>Password*</label>
+        <input type="password" id="password">
+        <div class="hint">
+            Password should be at least 15 characters OR at least 8 characters including a number & a lowercase letter.
+        </div>
+        <div class="error" id="passError"></div>
+
+        <!-- USERNAME -->
+        <label>Username*</label>
+        <input type="text" id="username">
+        <div class="error" id="userError"></div>
+
+        <!-- COUNTRY -->
+        <label>Your Country/Region*</label>
+        <select id="country">
+            <option>India</option>
+            <option>USA</option>
+            <option>UK</option>
+            <option>Canada</option>
+        </select>
+
+        <!-- EMAIL PREFERENCES -->
+        <label class="email-pref-label">Email preferences</label>
+        <div class="checkbox-row">
+            <input type="checkbox" id="updates">
+            <label for="updates">Receive occasional product updates and announcements</label>
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <button id="create">Create account</button>
+
+        <!-- TERMS FOOTER -->
+        <p class="terms">
+            By creating an account, you agree to the 
+            <a href="#">Terms of Service</a>. 
+            For more information about GitHub's privacy practices, see the 
+            <a href="#">GitHub Privacy Statement</a>. 
+            We'll occasionally send you account-related emails.
+        </p>
+
+    </div>
+</div>
+
+
+<!-- VALIDATION JS --------------------------------------------->
+<script>
+document.getElementById("create").addEventListener("click", function () {
+
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
+    let username = document.getElementById("username").value.trim();
+
+    let emailError = document.getElementById("emailError");
+    let passError = document.getElementById("passError");
+    let userError = document.getElementById("userError");
+
+    emailError.innerHTML = "";
+    passError.innerHTML = "";
+    userError.innerHTML = "";
+
+    let valid = true;
+
+    if (email.length === 0) {
+        emailError.innerHTML = "⚠ Email cannot be blank";
+        valid = false;
+    }
+
+    if (password.length < 8) {
+        passError.innerHTML = "⚠ Password is too short";
+        valid = false;
+    }
+
+    if (username.length < 4) {
+        userError.innerHTML = "⚠ Username must be at least 4 characters";
+        valid = false;
+    }
+
+    if (valid) {
+        alert("Account created successfully!");
+    }
+});
+</script>
+
+</body>
+</html>
