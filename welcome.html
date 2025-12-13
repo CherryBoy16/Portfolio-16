@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Detection - Welcome</title>
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            overflow: hidden;
+            color: #fff;
+        }
+        .welcome-container {
+            text-align: center;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease;
+        }
+        .welcome-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255, 0, 150, 0.3), rgba(0, 150, 255, 0.3));
+            z-index: -1;
+            transform: rotate(45deg);
+            animation: gradientMove 8s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { transform: rotate(45deg); }
+            50% { transform: rotate(405deg); }
+            100% { transform: rotate(45deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #00ffab;
+            animation: slideIn 1.5s ease;
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            animation: fadeText 2s ease;
+        }
+
+        @keyframes fadeText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .start-btn {
+            padding: 12px 30px;
+            background-color: #00ffab;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            color: #0f2027;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        .start-btn:hover {
+            background-color: #007d5b;
+            transform: scale(1.05);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 8s infinite ease-in-out;
+            z-index: -2;
+        }
+
+        .circle:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            bottom: -40px;
+            left: 30%;
+            animation-duration: 8s;
+            animation-delay: 0s;
+        }
+
+        .circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: -50px;
+            right: 20%;
+            animation-duration: 10s;
+            animation-delay: 2s;
+        }
+
+        .circle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            right: -30px;
+            animation-duration: 6s;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1>Welcome to Brain Tumor Detection</h1>
+        <p>Your trusted tool for accurate and efficient brain tumor diagnosis.</p>
+        <button class="start-btn" onclick="goToHome()">Get Started</button>
+    </div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+
+    <script>
+        function goToHome() {
+            window.location.href = "/home";  
+        }
+    </script>
+</body>
+</html>

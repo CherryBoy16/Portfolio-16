@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signup Page</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f6f8fa;
+        display: flex;
+        height: 100vh;
+    }
+
+    .left {
+        width: 50%;
+        background: linear-gradient(to bottom, #000000 10%, #1a0033 90%);
+        color: white;
+        padding: 60px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .left h1 {
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+
+    .left p {
+        opacity: 0.8;
+        line-height: 1.5;
+    }
+
+    .float-img {
+        position: absolute;
+        width: 180px;
+        animation: float 6s infinite ease-in-out;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-25px); }
+        100% { transform: translateY(0px); }
+    }
+
+    .img1 { bottom: 90px; left: 30px; animation-delay: 0s; }
+    .img2 { bottom: 190px; left: 220px; animation-delay: 1s; }
+    .img3 { bottom: 100px; left: 400px; animation-delay: 2s; }
+
+    /* Right Side */
+    .right {
+        width: 50%;
+        background: white;
+        color: #000000;
+        padding: 50px 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .right h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        background: #24292f;
+        color: white;
+        border: none;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .oauth-btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 6px;
+        border: 1px solid #d0d7de;
+        background: #ffffff;
+        font-size: 15px;
+        cursor: pointer;
+        font-weight: 500;
+        color: #24292f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .oauth-btn img {
+        width: 18px;
+        height: 18px;
+    }
+</style>
+</head>
+
+<body>
+<div class="left">
+    <h1>Create your free account</h1>
+    <p>Explore GitHub’s core features for individuals and organizations.</p>
+
+    <img src="/Users/sricharan/Downloads/erasebg-transformed (1).webp" class="float-img img1">
+    <img src="/Users/sricharan/Downloads/erasebg-transformed.webp" class="float-img img2">
+    <img src="/Users/sricharan/Downloads/erasebg-transformed (2).webp" class="float-img img3">
+</div>
+
+<div class="right">
+    <h2>Sign up</h2>
+
+    <button class="oauth-btn">
+        <img src="/Users/sricharan/Downloads/google.png">
+        Continue with Google
+    </button>
+
+    <button class="oauth-btn">
+        <img src="/Users/sricharan/Downloads/apple.png">
+        Continue with Apple
+    </button>
+
+    <p style="text-align:center; margin:10px 0; opacity:0.7;">OR</p>
+
+    <label>Email*</label>
+    <input id="email" type="email" placeholder="Email">
+
+    <label>Password*</label>
+    <input id="password" type="password" placeholder="Password">
+
+    <label>Username*</label>
+    <input id="username" type="text" placeholder="Username">
+
+    <label>Your Country/Region*</label>
+    <select id="country">
+        <option value="">Select Country</option>
+        <option>India</option>
+        <option>USA</option>
+        <option>UK</option>
+        <option>Others</option>
+    </select>
+
+    <label>
+        <input id="updates" type="checkbox">
+        Receive occasional product updates
+    </label>
+
+    <button id="submitBtn">Create Account</button>
+</div>
+
+<script>
+document.getElementById("submitBtn").addEventListener("click", function () {
+
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
+    let username = document.getElementById("username").value.trim();
+    let country = document.getElementById("country").value;
+    let updates = document.getElementById("updates").checked;
+
+    // Email validation
+    if (!email || !email.includes("@") || !email.includes(".")) {
+        alert("Please enter a valid email.");
+        return;
+    }
+
+    // Password rule
+    let passwordRule =
+        password.length >= 8 &&
+        /\d/.test(password) &&
+        /[a-z]/.test(password);
+
+    if (!passwordRule) {
+        alert("Password must be at least 8 characters and include a number and a lowercase letter.");
+        return;
+    }
+
+    // Username rule
+    let userRule = /^[a-zA-Z0-9-]+$/;
+
+    if (!username.match(userRule)) {
+        alert("Username must contain only letters, numbers, or hyphens.");
+        return;
+    }
+    if (username.startsWith("-") || username.endsWith("-")) {
+        alert("Username cannot start or end with a hyphen.");
+        return;
+    }
+
+    if (!country) {
+        alert("Please select your country.");
+        return;
+    }
+    alert(
+        "Signup Successful!\n\n" +
+        "Email: " + email + "\n" +
+        "Username: " + username + "\n" +
+        "Country: " + country + "\n" +
+        "Updates: " + (updates ? "Yes" : "No")
+    );
+});
+</script>
+
+</body>
+</html>
